@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>HomePage</title>
+    <style>
+      body {
+        background-color: #219ebc;
+
+      }
+
+      .start {
+        background-color: #023047;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+      }
+
+      .start-container {
+        max-width: 600px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+      }
+
+      .card {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        background-color: #ffb703;
+      }
+
+      .card img {
+        height: 180px;
+
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+      }
+
+      .content-container {
+        max-width: 100%;
+        display: flex;
+        height: 623px;
+        align-items: center;
+        justify-content: center;
+        background-color: #219ebc;
+
+      }
+
+      .content {
+
+        max-width: 60%;
+        /* height: 500px; */
+
+
+      }
+
+      .login-btn {
+        width: 8rem;
+        padding: 5px;
+        text-align: center;
+        height: 2.5rem;
+        border-radius: 5%;
+        background-color: #c1121f;
+      }
+    </style>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+
+    <% if (user) { %>
+
+
+      <div class="start">
+        <div class="start-container">
+          <div>
+            <h1 style="color: #219ebc;">Hello, <span style="color: #ffb703;">
+                <%= user.fullName %>
+              </span>
+            </h1>`
+          </div>
+          <div>
+            <p style="text-align: center; font-size: 16px; color: #8ecae6;">"Welcome to <b
+                style="color: #fb8500;">BLOG<span style="color: #ffb703;">BEE</span></b> your
+              ultimate destination for
+              insightful
+              stories, expert opinions, and
+              creative inspirations."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-5" id="blogContainer" style="max-height: 19rem; overflow: hidden;">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+          <% blogs.forEach(blog=> { %>
+            <div class="col d-flex justify-content-center">
+              <div class="card" style="width: 18rem ;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="<%= blog.title %>" />
+                <div class="card-body text-center ">
+                  <h5 class=" card-title"
+                    style="  max-width: 11rem; height: 1.9rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                    <%= blog.title %>
+                  </h5>
+
+                  <a href="/blog/<%= blog._id %>" class="btn  px-4"
+                    style="background-color: #023047 ;color: aliceblue;">View</a>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </div>
+      <div class="text-center ">
+        <button id="toggleOverflow" class="btn " style="background-color: #fb8500; color: #023047;">Show More</button>
+      </div>
+      <%- include('partials/scroll') %>
+        <% } else { %>
+          <div class="content-container">
+            <div class="content">
+              <div>
+
+                <h1 style="color: #023047;">Discover the Magical Journey</h1>
+              </div>
+              <div>
+
+                <p>"Welcome to <b style="color: #c1121f; ">Blogs</b>, a platform designed to elevate your blogging
+                  experience"</p>
+              </div>
+              <div class="login-btn" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 20px">
+                <a href="/user/signin" style=" color: #ffb703; text-decoration: none; ;"><b>Login</b></a>
+
+              </div>
+            </div>
+
+
+          </div>
+          <%}%>
+
+            <%- include('./partials/footer') %>
+
+              <%- include('./partials/scripts') %>
+
+</body>
+
+</html>

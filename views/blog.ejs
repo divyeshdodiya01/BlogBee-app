@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Blog</title>
+        <style>
+            .blog-header {
+                background-color: #023047;
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                border-radius: 0 0 25px 25px;
+                padding: 50px 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+
+            }
+
+            .blog-header img {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+                /* border-radius: 8px; */
+            }
+
+            .profile-container {
+                display: flex;
+                flex-direction: column;
+                /* justify-content: center; */
+                text-align: center;
+                align-items: center;
+                border: 1px solid #415a77;
+                border-radius: 15px;
+                max-height: 250px;
+                max-width: 250px;
+                width: 100%;
+                padding: 20px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                margin-right: 60px;
+
+            }
+
+            .blog-title {
+                font-size: 2rem;
+
+                font-weight: bold;
+                margin-top: 20px;
+                color: #000;
+            }
+
+            .blog-meta {
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            .blog-body-container {
+                padding: 30px 15px;
+                /* background-color: #f9f9f9; */
+                background-color: #f9f9f9;
+
+            }
+
+            .blog-body {
+                max-width: 800px;
+                margin: 0 auto;
+                font-size: 1rem;
+                line-height: 1.8;
+                text-align: justify;
+            }
+
+            .previous-post {
+                margin-top: 20px;
+                text-align: left;
+                font-size: 0.9rem;
+            }
+
+            a {
+                text-decoration: none;
+
+            }
+
+            .comnt-store {
+                /* border: 1px solid #023047; */
+                padding: 60px;
+                padding-top: 20px;
+                display: flex;
+                border-radius: 30px 30px 0 0;
+                flex-direction: column;
+                height: 200px;
+                overflow: hidden;
+                scrollbar-width: none;
+                /* background-color: #8ecae6; */
+
+            }
+
+            .comnt-store-content {
+                padding-left: 60px;
+                padding-right: 60px;
+
+
+            }
+
+            .comment-container {
+
+                border-radius: 0 0 30px 30px;
+                background-color: #e9edc9;
+                padding: 30px;
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+            }
+
+            .cmnt-button {
+
+
+                appearance: button;
+                backface-visibility: hidden;
+                background-color: #405cf5;
+                border-radius: 6px;
+                border-width: 0;
+                box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+                font-size: 100%;
+                height: 35px;
+                line-height: 1.15;
+
+                outline: none;
+                overflow: hidden;
+                padding: 0 25px;
+                position: relative;
+                text-align: center;
+                text-transform: none;
+                transform: translateZ(0);
+                transition: all .2s, box-shadow .08s ease-in;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+
+
+
+            }
+
+            .cmnt-button:disabled {
+                cursor: default;
+            }
+
+            .cmnt-button:focus {
+                box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+            }
+
+            @media (max-width: 768px) {
+
+
+                .blog-header {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+
+                .blog-header img {
+                    max-width: 90%;
+                }
+
+                .profile-container {
+                    width: 40%;
+                    height: 80px;
+                    order: -1;
+
+                    flex-direction: row;
+
+                    margin-bottom: 20px;
+                    margin-right: 0;
+                }
+
+                .profile-container h6 {
+                    display: none;
+                }
+
+                .profile-img-container {
+                    width: 70px;
+
+                }
+
+                .profile-meta-container {
+                    display: flex;
+                    flex-direction: column;
+
+
+                    font-size: 10px;
+                }
+
+
+
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+
+
+        <div class="blog-header  " style="min-height: 400px; ">
+            <div class="text-center px-3">
+
+                <img src="<%= blog.coverImageUrl %>" alt="Blog Cover Image" class="img-fluid"
+                    style="max-width: 700px; height: auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+
+
+                <h1 class="blog-title mt-3" style="color: white;">
+                    <%= blog.title %>
+                </h1>
+
+
+
+            </div>
+            <!-- <div class="profile-container">
+                <h6 style="color: #fefae0;">Created By</h6>
+                <div class="profile-img-container">
+                    <img src="<%= blog.createdBy.profileImageURL %>" alt="profileImage" style="width: 100px;">
+                </div>
+                <div class="profile-meta-container">
+                    <div>
+                        <h5 style="max-width: 150px; color: #ffb703; margin-top: 15px;">
+                            <%= blog.createdBy.fullName %>
+                        </h5>
+                    </div>
+                    <div>
+                        <h5
+                            style="max-width: 150px; color: #f9f9f9; max-width: 11rem; height: 1.9rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 5px;">
+                            <%= blog.createdBy._id %>
+                        </h5>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+
+        <div class="blog-body-container" ">
+            <div class=" container">
+            <div class="blog-body" style="background-color: #fefae0; padding: 20px;font-size: 16px; 
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+                
+                ">
+                <pre>
+                    <%= blog.body %>
+                </pre>
+            </div>
+        </div>
+        <% if (comments.length) { %>
+
+            <div>
+                <div id="comnt-store" class="comnt-store mt-5">
+                    <h4>Recent Comments</h4>
+                    <% comments.forEach(comment=> { %>
+                        <div class=" cmnt-img-content"
+                            style="border: 1px solid #ffb703;padding: 10px; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;background-color: #fefae0; margin-top: 5px;">
+
+
+                            <div class="cmnt-store-img">
+
+                                <img src="<%= comment?.createdBy.profileImageURL %>" alt="profileImage"
+                                    style="width: 60px;">
+                                <span style="font-weight: 600; color: #415a77;">
+                                    <%= comment?.createdBy.fullName %>
+                                </span>
+                                <span>
+                                    <%= new Date(comment?.createdAt).toLocaleDateString('en-US', { year: 'numeric' ,
+                                        month: 'long' , day: 'numeric' }) %>
+                                </span>
+
+
+
+
+
+                            </div>
+                            <div class="comnt-store-content text-break" style=" border: 1px solid #ccd5ae; ">
+                                <p style="font-size: 14px; margin-top: 10px; font-weight: 500;">
+                                    <%= comment?.comment %>
+
+                                </p>
+                            </div>
+
+                        </div>
+                        <% }) %>
+
+                </div>
+
+                <div style="display: flex;
+                            justify-content: center;
+                            flex-direction: column;
+                            align-items: center;
+                            margin-top: 10px;">
+                    <span id="cmnt-all-btn" style="cursor: pointer; ">&#11206</span>
+                    <span id="cmnt-all-meta" style="cursor: pointer;">more</span>
+                </div>
+            </div>
+            <% } %>
+
+                <%- include('./partials/commentScript') %>
+                    <div class=" previous-post" style="padding: 20px; margin-bottom: 20px;">
+                        <a href="/" style="color: #000; "><b>← Back to blog</b></a>
+                    </div>
+                    <% if (locals.user) { %>
+
+                        <div class="comment-container" style="min-height: 17rem;">
+
+                            <div class="comment">
+                                <div class="cmnt-img">
+                                    <img src="<%= blog.createdBy.profileImageURL %>" alt="profileImage"
+                                        style="width: 60px;">
+                                    <span style="font-weight: 600; color: #415a77;">
+                                        <%= blog.createdBy.fullName%>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="comnt-content-container">
+                                <h3>Comments(<%= comments.length %>)</h3>
+                                <form action="/blog/comment/<%= blog._id %>" method="post">
+                                    <div class="mb-3">
+
+                                        <input type="text" class="form-control" id="comment" name="comment"
+                                            aria-describedby="comment" placeholder="Enter Your Comments"
+                                            style="border: 1px solid #415a77;" />
+                                    </div>
+                                    <div>
+                                        <button class="cmnt-button" type="submit"
+                                            style="background-color: #023047; color: #f9f9f9;">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                        <% } %>
+                            </div>
+
+                            </div>
+
+
+
+
+                            <%- include('./partials/footer') %>
+
+                                <%- include('./partials/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>Sign Up</title>
+
+
+    <style>
+      body {
+        background-color: #219ebc;
+      }
+
+      .form-container {
+        background-color: #1c1c1c;
+        max-width: 400px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+      }
+
+
+      .form-control:focus {
+        border-color: #0077b6 !important;
+        box-shadow: 0 0 10px #0077b6 !important;
+      }
+
+      /* Button styling */
+      .btn-success {
+        background-color: #0077b6;
+        border: none;
+        font-weight: bold;
+      }
+
+      .btn-success:hover {
+        background-color: #0077b6;
+      }
+
+      /* Form heading */
+      h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+    </style>
+</head>
+
+<body>
+
+
+  <div class="container d-flex justify-content-center align-items-center top-10px vh-100">
+    <form class="form-container p-4 rounded border border-primary" action="/user/signup" method="post">
+      <h2 class="text-center text-primary mb-4">SIGN UP</h2>
+
+      <div class="mb-3">
+        <label for="fullName" class="form-label text-light">Full Name</label>
+        <input type="text" name="fullName" class="form-control bg-dark text-light border-0" id="fullName" />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label text-light">Email address</label>
+        <input type="email" name="email" class="form-control bg-dark text-light border-0" id="email" />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label text-light">Password</label>
+        <input type="password" name="password" class="form-control bg-dark text-light border-0" id="password"
+          autocomplete="off" />
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Submit</button>
+    </form>
+
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>

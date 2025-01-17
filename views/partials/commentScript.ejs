@@ -1,0 +1,24 @@
+<script>
+    const commentStore = document.getElementById("comnt-store")
+    const commentAllBtn = document.getElementById("cmnt-all-btn");
+    const commentAllMeta = document.getElementById("cmnt-all-meta")
+
+    if (!commentStore.style.height) {
+        commentStore.style.height = "200px";
+    }
+
+    commentAllBtn.addEventListener("click", function () {
+        if (commentStore.style.height === "200px") {
+            commentStore.style.height = "250px";
+            commentStore.style.overflow = "scroll";
+            commentAllBtn.innerHTML = "&#11205"
+            commentAllMeta.innerHTML = "less"
+        } else {
+            commentStore.style.height = "200px";
+            commentStore.style.overflow = "hidden";
+            commentAllBtn.innerHTML = "&#11206";
+            commentAllMeta.innerHTML = "All"
+            commentStore.scrollTop = 0;
+        }
+    })
+</script>

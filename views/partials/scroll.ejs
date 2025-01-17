@@ -1,0 +1,16 @@
+<script>
+    const toggleButton = document.getElementById('toggleOverflow');
+    const blogContainer = document.getElementById('blogContainer');
+
+    toggleButton.addEventListener('click', () => {
+        if (blogContainer.style.maxHeight === '19rem') {
+            blogContainer.style.maxHeight = 'none';
+            blogContainer.style.overflow = 'visible';
+            toggleButton.textContent = 'Show Less';
+        } else {
+            blogContainer.style.maxHeight = '19rem';
+            blogContainer.style.overflow = 'hidden';
+            toggleButton.textContent = 'Show More';
+        }
+    });
+</script>
